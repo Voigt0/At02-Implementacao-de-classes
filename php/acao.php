@@ -21,41 +21,29 @@
         if($acao == "insert"){
             if($tabela == "cidade"){
                 $cidade = new Cidade("", $_POST['CidadeNome'], $_POST['EstadoID']);
-                $resultado = $cidade->inserir();
-                if ($resultado){
-                    header("location:tabelacidade.php");
-                } else {echo "Não funcionou";}
+                $cidade->inserir();
             } else if($tabela == "estado") {
                 $estado = new Estado("", $_POST['EstadoNome'], $_POST['EstadoSigla']);
-                $resultado = $estado->inserir();
-                if ($resultado){
-                    header("location:tabelaestado.php");
-                } else {echo "Não funcionou";}
+                $estado->inserir();
             }
         }
         else if($acao == "deletar"){
             if($tabela == "cidade"){
                 $cidade = new Cidade($_GET['id'], "", "");
-                $resultado = $cidade->deletar();
-                if ($resultado){
-                    header("location:tabelacidade.php");
-                } else {echo "Não funcionou";}
+                $cidade->deletar();
             } else if($tabela == "estado") {
                 $estado = new Estado($_GET['id'], "", "");
-                $resultado = $estado->deletar();
-                if ($resultado){
-                    header("location:tabelaestado.php");
-                } else {echo "Não funcionou";}
+                $estado->deletar();
             }
         }
         else if($acao == "update"){
             if($tabela == "cidade"){
                 $cidade = new Cidade($_POST['id'], $_POST['CidadeNome'], $_POST['EstadoID']);
-                $resultado = $cidade->atualizar();
+                $cidade->atualizar();
                 header("location:tabelacidade.php");
             } else if($tabela == "estado") {
                 $estado = new Estado($_POST['id'], $_POST['EstadoNome'], $_POST['EstadoSigla']);
-                $resultado = $estado->atualizar();
+                $estado->atualizar();
                 header("location:tabelaestado.php");
             }
         }
