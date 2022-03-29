@@ -40,7 +40,7 @@
         </div>
         <div class="form-group">
         <label for="">Sigla:</label>
-        <input type="text" class="form-control" required type="text" name="EstadoSigla" id="EstadoSigla" placeholder="Digite a sigla" value="<?php if ($comando == "update"){echo $dados['EstadoSigla'];}?>">
+        <input type="text" class="form-control" required type="text" name="EstadoSigla" id="EstadoSigla" placeholder="Digite a sigla" value="<?php if ($comando == "update"){echo $dados['EstadoSigla'];}?>" minlength="2" maxlength="2">
         </div>
         <br>
         <input type="hidden" name="comando" id="" value="<?php if($comando == "update"){echo "update";}else{echo "insert";}?>">
