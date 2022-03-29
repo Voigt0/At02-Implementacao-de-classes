@@ -38,6 +38,7 @@
         <label for="">Nome da cidade:</label>
         <input type="text" class="form-control" required type="text" name="CidadeNome" id="CidadeNome" placeholder="Digite a cidade" value="<?php if ($comando == "update"){echo $dados['CidadeNome'];}?>">
         </div>
+        <br>
         <label class="formItem formText" id="">Estado:</label>
         <select class="form-select" aria-label="Escolha o estado" name="EstadoID" value="">  
             <?php
