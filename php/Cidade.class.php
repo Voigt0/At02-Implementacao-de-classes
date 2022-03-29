@@ -26,30 +26,67 @@
             private $estadoId;
 
             public function __construct($id, $nome, $estadoId) {
-                $this->id = $id;
-                $this->nome = $nome;
-                $this->estadoId = $estadoId;
+                $this->setId($id);
+                $this->setNome($nome);
+                $this->setEstadoId($estadoId);
             }
 
-            public function __toString() {
-                $str = "<br>\n ID: ".$this->id."<br>\n Nome: ".$this->nome."<br>\n EstadoID: ".$this->estadoId;
-                return $str;
+            // public function __toString() {
+            //     $str = "<br>\n ID: ".$this->id."<br>\n Nome: ".$this->nome."<br>\n EstadoID: ".$this->estadoId;
+            //     return $str;
+            // }
+
+            public function setId($newId) {
+                return $this->id = $newId;
             }
+
+            public function setNome($newNome) {
+                return $this->nome = $newNome;
+            }
+
+            public function setEstadoId($newEstadoId) {
+                return $this->estadoid = $newEstadoId;
+            }
+
+            public function getId() {
+                if($this->id != "") {
+                    return $this->id;
+                } else {
+                    return "Não informado";
+                }
+            }
+
+            public function getNome() {
+                if($this->nome != "") {
+                    return $this->nome;
+                } else {
+                    return "Não informado";
+                }
+            }
+
+            public function getEstadoId() {
+                if($this->estadoid != "") {
+                    return $this->estadoid;
+                } else {
+                    return "Não informado";
+                }
+            }
+
 
             public function inserir() {
                 $pdo = Conexao::getInstance();
                 $stmt = $pdo->prepare('INSERT INTO Cidade (CidadeNome, EstadoID) VALUES(:CidadeNome, :EstadoID)');
-                $stmt->bindParam(':CidadeNome', $this->nome, PDO::PARAM_STR);
-                $stmt->bindParam(':EstadoID', $this->estadoId, PDO::PARAM_INT);
+                $stmt->bindParam(':CidadeNome', $this->getNome(), PDO::PARAM_STR);
+                $stmt->bindParam(':EstadoID', $this->getEstadoId(), PDO::PARAM_INT);
                 return $stmt->execute();
             }
 
             public function atualizar() {
                 $pdo = Conexao::getInstance();
                 $stmt = $pdo->prepare("UPDATE `auladia15`.`Cidade` SET `CidadeNome` = :CidadeNome, `EstadoID` = :EstadoID WHERE (`CidadeID` = :CidadeID);");
-                $stmt->bindParam(':CidadeID', $this->id, PDO::PARAM_INT);
-                $stmt->bindParam(':CidadeNome', $this->nome, PDO::PARAM_STR);
-                $stmt->bindParam(':EstadoID', $this->estadoId, PDO::PARAM_INT);
+                $stmt->bindParam(':CidadeID', $this->setId($this->id), PDO::PARAM_INT);
+                $stmt->bindParam(':CidadeNome', $this->setNome($this->nome), PDO::PARAM_STR);
+                $stmt->bindParam(':EstadoID', $this->setEstadoId($this->estadoid), PDO::PARAM_INT);
                 return $stmt->execute();
             }
 
