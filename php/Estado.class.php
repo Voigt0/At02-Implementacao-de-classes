@@ -83,16 +83,16 @@
             public function atualizar() {
                 $pdo = Conexao::getInstance();
                 $stmt = $pdo->prepare("UPDATE `auladia15`.`Estado` SET `EstadoNome` = :EstadoNome, `EstadoSigla` = :EstadoSigla WHERE (`EstadoID` = :CidadeID);");
-                $stmt->bindParam(':CidadeID', $this->id, PDO::PARAM_INT);
-                $stmt->bindParam(':EstadoNome', $this->nome, PDO::PARAM_STR);
-                $stmt->bindParam(':EstadoSigla', $this->sigla, PDO::PARAM_STR);
+                $stmt->bindParam(':CidadeID', $this->setId($this->id), PDO::PARAM_INT);
+                $stmt->bindParam(':EstadoNome', $this->setId($this->nome), PDO::PARAM_STR);
+                $stmt->bindParam(':EstadoSigla', $this->setId($this->sigla), PDO::PARAM_STR);
                 $stmt->execute();
             }
 
             public function deletar() {
                 $pdo = Conexao::getInstance();
                 $stmt = $pdo->prepare("DELETE FROM `auladia15`.`Estado` WHERE EstadoID = :EstadoID");
-                $stmt->bindParam(':EstadoID', $this->id, PDO::PARAM_INT);
+                $stmt->bindParam(':EstadoID', $this->setId($this->id), PDO::PARAM_INT);
                 $stmt->execute();
                 return $stmt->execute();
             }
