@@ -53,7 +53,7 @@
                 // $stmt->bindParam(':CidadeID', $this->id, PDO::PARAM_INT);
                 // $stmt->bindParam(':CidadeNome', $this->nome, PDO::PARAM_STR);
                 // $stmt->bindParam(':EstadoID', $this->estadoId, PDO::PARAM_INT);
-                $stmt->execute();
+                return $stmt->execute();
             }
 
             public function deletar() {
@@ -71,7 +71,7 @@
 
         // while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {
         //     $x++;
-        //     $cidade[$x] = new Cidade($linha['CidadeNome'], $linha['CidadeNome'], $linha['EstadoID']);
+        //     $cidade[$x] = new Cidade($linha['CidadeID'], $linha['CidadeNome'], $linha['EstadoID']);
         //     echo $cidade[$x]."<br>\n";
 
         // }
