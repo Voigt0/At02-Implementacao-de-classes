@@ -93,7 +93,7 @@
             public function deletar() {
                 $pdo = Conexao::getInstance();
                 $stmt = $pdo->prepare("DELETE FROM `auladia15`.`Cidade` WHERE CidadeID = :CidadeID");
-                $stmt->bindParam(':CidadeID', $this->id, PDO::PARAM_INT);
+                $stmt->bindParam(':CidadeID', $this->setId($this->id), PDO::PARAM_INT);
                 $stmt->execute();
                 return $stmt->execute();
             }
