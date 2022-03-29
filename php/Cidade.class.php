@@ -46,13 +46,10 @@
 
             public function atualizar() {
                 $pdo = Conexao::getInstance();
-                $id = $this->id;
-                $cidadenome = $this->nome;
-                $estadoid = $this->estadoId;
-                $stmt = $pdo->query("UPDATE `auladia15`.`Cidade` SET `CidadeNome` = '$cidadenome', `EstadoID` = '$estadoid' WHERE (`CidadeID` = '$id');");
-                // $stmt->bindParam(':CidadeID', $this->id, PDO::PARAM_INT);
-                // $stmt->bindParam(':CidadeNome', $this->nome, PDO::PARAM_STR);
-                // $stmt->bindParam(':EstadoID', $this->estadoId, PDO::PARAM_INT);
+                $stmt = $pdo->prepare("UPDATE `auladia15`.`Cidade` SET `CidadeNome` = :CidadeNome, `EstadoID` = :EstadoID WHERE (`CidadeID` = :CidadeID);");
+                $stmt->bindParam(':CidadeID', $this->id, PDO::PARAM_INT);
+                $stmt->bindParam(':CidadeNome', $this->nome, PDO::PARAM_STR);
+                $stmt->bindParam(':EstadoID', $this->estadoId, PDO::PARAM_INT);
                 return $stmt->execute();
             }
 
