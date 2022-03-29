@@ -22,18 +22,22 @@
             if($tabela == "cidade"){
                 $cidade = new Cidade("", $_POST['CidadeNome'], $_POST['EstadoID']);
                 $cidade->inserir();
+                header("location:tabelacidade.php");
             } else if($tabela == "estado") {
                 $estado = new Estado("", $_POST['EstadoNome'], $_POST['EstadoSigla']);
                 $estado->inserir();
+                header("location:tabelaestado.php");
             }
         }
         else if($acao == "deletar"){
             if($tabela == "cidade"){
                 $cidade = new Cidade($_GET['id'], "", "");
                 $cidade->deletar();
+                header("location:tabelacidade.php");
             } else if($tabela == "estado") {
                 $estado = new Estado($_GET['id'], "", "");
                 $estado->deletar();
+                header("location:tabelaestado.php");
             }
         }
         else if($acao == "update"){
