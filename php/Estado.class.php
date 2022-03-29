@@ -26,21 +26,57 @@
             public $sigla;
 
             public function __construct($id, $nome, $sigla) {
-                $this->id = $id;
-                $this->nome = $nome;
-                $this->sigla = $sigla;
+                $this->setId($id);
+                $this->setNome($nome);
+                $this->setSigla($sigla);
             }
 
-            public function __toString() {
-                $str = "<br>\n ID: ".$this->id."<br>\n Nome: ".$this->nome."<br>\n Sigla: ".$this->sigla;
-                return $str;
+            // public function __toString() {
+            //     $str = "<br>\n ID: ".$this->id."<br>\n Nome: ".$this->nome."<br>\n Sigla: ".$this->sigla;
+            //     return $str;
+            // }
+
+            public function setId($newId) {
+                return $this->id = $newId;
+            }
+
+            public function setNome($newNome) {
+                return $this->nome = $newNome;
+            }
+
+            public function setSigla($newSigla) {
+                return $this->sigla = $newSigla;
+            }
+
+            public function getId() {
+                if($this->id != "") {
+                    return $this->id;
+                } else {
+                    return "Não informado";
+                }
+            }
+
+            public function getNome() {
+                if($this->nome != "") {
+                    return $this->nome;
+                } else {
+                    return "Não informado";
+                }
+            }
+
+            public function getSigla() {
+                if($this->sigla != "") {
+                    return $this->sigla;
+                } else {
+                    return "Não informado";
+                }
             }
 
             public function inserir(){
                 $pdo = Conexao::getInstance();
                 $stmt = $pdo->prepare('INSERT INTO Estado (EstadoNome, EstadoSigla) VALUES(:EstadoNome, :EstadoSigla)');
-                $stmt->bindParam(':EstadoNome', $this->nome, PDO::PARAM_STR);
-                $stmt->bindParam(':EstadoSigla', $this->sigla, PDO::PARAM_STR);
+                $stmt->bindParam(':EstadoNome', $this->getNome(), PDO::PARAM_STR);
+                $stmt->bindParam(':EstadoSigla', $this->getSigla(), PDO::PARAM_STR);
                 return $stmt->execute();
             }
 
